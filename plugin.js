@@ -30,7 +30,7 @@ Plugin.registerSourceHandler("index.less", {archMatching: 'web'}, function (comp
         message: "Less compiler error: " + error.message,
         sourcePath: error.filename || compileStep.inputPath,
         line: error.line,
-        column: error.column + 1
+        column: error.column
       });
     } else {
       compileStep.addStylesheet({
