@@ -28,7 +28,7 @@ Plugin.registerSourceHandler("index.less", {archMatching: 'web'}, function (comp
     if (error) {
       compileStep.error({
         message: "Less compiler error: " + error.message,
-        sourcePath: error.filename || compileStep.inputPath,
+        sourcePath: compileStep.inputPath,
         line: error.line,
         column: error.column
       });
