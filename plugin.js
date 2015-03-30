@@ -2,7 +2,7 @@ var fs   = Npm.require('fs');
 var less = Npm.require('less');
 var LessPluginAutoPrefix = Npm.require('less-plugin-autoprefix');
 
-var DEFAULT_INDEX_FILE_PATH = "./main.less";
+var DEFAULT_INDEX_FILE_PATH = "./client/main.less";
 var OPTIONS_FILE = "config/less.json";
 
 var generatedMessage = [
@@ -42,7 +42,7 @@ Plugin.registerSourceHandler("less", {archMatching: 'web'}, function (compileSte
         var lessIndex = fs.readFileSync(indexFilePath, 'utf8');
         if ( lessIndex.indexOf(compileStep.inputPath) == -1 ) {
           fs.appendFileSync(indexFilePath, '\n@import "' + compileStep.inputPath + '";', 'utf8');
-        }  
+        }
       } else {
         var newFile = generatedMessage + '@import "' + compileStep.inputPath + '";\n';
         fs.writeFileSync(indexFilePath, newFile, 'utf8');
