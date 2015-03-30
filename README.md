@@ -28,7 +28,7 @@ With the default `less` package, if you wanted to control the order in which you
 * `meteor add grove:less` — without any additional configuration , this package will automatically parse all `.less` files, compile them with Less, and add them to the client CSS bundle. Same behavior as before.
 * Create `config/less.json`. Here's a template:
 
-```json
+```js
 {
   "enableAutoprefixer": true,  // defaults to false
   "autoprefixerOptions": {
