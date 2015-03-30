@@ -1,7 +1,8 @@
 Package.describe({
   name: "grove:less",
   summary: "Import all of your Less files in one step, in the order you want",
-  version: "0.1.0"
+  version: "0.1.1",
+  git: 'https://github.com/grovelabs/meteor-less.git'
 });
 
 Package.registerBuildPlugin({
