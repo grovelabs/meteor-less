@@ -11,7 +11,7 @@ Package.registerBuildPlugin({
     'plugin.js',
   ],
   npmDependencies: {
-    "less": "2.2.0",
-    "less-plugin-autoprefix": "1.3.0"
+    "less": "2.4.0",
+    "less-plugin-autoprefix": "1.4.1"
   }
 });
