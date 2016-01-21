@@ -1,5 +1,6 @@
 var fs   = Npm.require('fs');
 var less = Npm.require('less');
+var path = Npm.require('path');
 var LessPluginAutoPrefix = Npm.require('less-plugin-autoprefix');
 
 var DEFAULT_INDEX_FILE_PATH = "./client/main.less";
@@ -25,6 +26,9 @@ var loadJSONFile = function (compileStep, filePath) {
   }
 };
 
+var convertToPosixPath = function(filePath) {
+  return filePath.split(path.sep).join('/');
+};
 
 Plugin.registerSourceHandler("less", {archMatching: 'web'}, function (compileStep) {
   // Reading in user configuration
@@ -37,14 +41,14 @@ Plugin.registerSourceHandler("less", {archMatching: 'web'}, function (compileSte
   if ( config.useIndex ) {
     var indexFilePath = config.indexFilePath || DEFAULT_INDEX_FILE_PATH;
     // If this isn't the index file, add it to the index if need be
-    if ( compileStep.inputPath != indexFilePath ) {
+    if ( convertToPosixPath(compileStep.inputPath) != indexFilePath ) {
       if ( fs.existsSync(indexFilePath) ) {
         var lessIndex = fs.readFileSync(indexFilePath, 'utf8');
-        if ( lessIndex.indexOf(compileStep.inputPath) == -1 ) {
-          fs.appendFileSync(indexFilePath, '\n@import "' + compileStep.inputPath + '";', 'utf8');
+        if ( lessIndex.indexOf(convertToPosixPath(compileStep.inputPath)) == -1 ) {
+          fs.appendFileSync(indexFilePath, '\n@import "' + convertToPosixPath(compileStep.inputPath) + '";', 'utf8');
         }
       } else {
-        var newFile = generatedMessage + '@import "' + compileStep.inputPath + '";\n';
+        var newFile = generatedMessage + '@import "' + convertToPosixPath(compileStep.inputPath) + '";\n';
         fs.writeFileSync(indexFilePath, newFile, 'utf8');
       }
       return; // stop here, only compile the index file
