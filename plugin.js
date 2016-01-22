@@ -39,16 +39,17 @@ Plugin.registerSourceHandler("less", {archMatching: 'web'}, function (compileSte
 
   // Load order setup
   if ( config.useIndex ) {
-    var indexFilePath = config.indexFilePath || DEFAULT_INDEX_FILE_PATH;
+    var indexFilePath = config.indexFilePath || DEFAULT_INDEX_FILE_PATH,
+        posixInputPath = convertToPosixPath(compileStep.inputPath);
     // If this isn't the index file, add it to the index if need be
-    if ( convertToPosixPath(compileStep.inputPath) != indexFilePath ) {
+    if ( posixInputPath) != indexFilePath ) {
       if ( fs.existsSync(indexFilePath) ) {
         var lessIndex = fs.readFileSync(indexFilePath, 'utf8');
-        if ( lessIndex.indexOf(convertToPosixPath(compileStep.inputPath)) == -1 ) {
-          fs.appendFileSync(indexFilePath, '\n@import "' + convertToPosixPath(compileStep.inputPath) + '";', 'utf8');
+        if ( lessIndex.indexOf(posixInputPath) == -1 ) {
+          fs.appendFileSync(indexFilePath, '\n@import "' + posixInputPath + '";', 'utf8');
         }
       } else {
-        var newFile = generatedMessage + '@import "' + convertToPosixPath(compileStep.inputPath) + '";\n';
+        var newFile = generatedMessage + '@import "' + posixInputPath + '";\n';
         fs.writeFileSync(indexFilePath, newFile, 'utf8');
       }
       return; // stop here, only compile the index file
