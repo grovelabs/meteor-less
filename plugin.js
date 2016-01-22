@@ -42,7 +42,7 @@ Plugin.registerSourceHandler("less", {archMatching: 'web'}, function (compileSte
     var indexFilePath = config.indexFilePath || DEFAULT_INDEX_FILE_PATH,
         posixInputPath = convertToPosixPath(compileStep.inputPath);
     // If this isn't the index file, add it to the index if need be
-    if ( posixInputPath) != indexFilePath ) {
+    if ( posixInputPath != indexFilePath ) {
       if ( fs.existsSync(indexFilePath) ) {
         var lessIndex = fs.readFileSync(indexFilePath, 'utf8');
         if ( lessIndex.indexOf(posixInputPath) == -1 ) {
