@@ -12,18 +12,20 @@ Package.registerBuildPlugin({
     'plugin.js',
   ],
   npmDependencies: {
-    "less": "2.4.0",
-    "less-plugin-autoprefix": "1.4.1"
+    "less": "2.6.0",
+    "less-plugin-autoprefix": "1.5.1"
   }
 });
 
 Package.onTest(function (api) {
-  api.use(['grove:less',
-           'practicalmeteor:munit',
-           'templating'
-          ]);
-  api.addFiles(['tests/foo.html',
-                'tests/foo.less',
-                'tests/tests.js',
-                ], 'client');
+  api.use([
+    'grove:less',
+    'practicalmeteor:munit',
+    'templating'
+  ]);
+  api.addFiles([
+    'tests/foo.html',
+    'tests/foo.less',
+    'tests/tests.js',
+  ], 'client');
 });
