@@ -1,6 +1,6 @@
 # Meteor Less Build Plugin
 
-This a build plugin for [Less](lesscss.org) for Meteor that replaces the `less` package [suggested by MDG](http://docs.meteor.com/#/full/less) with one where you can control load order and run [Autoprefixer](https://github.com/postcss/autoprefixer) on the output CSS to get all of your needed vendor prefixes.
+This a build plugin for [Less](http://lesscss.org) for Meteor that replaces the `less` package [suggested by MDG](http://docs.meteor.com/#/full/less) with one where you can control load order and run [Autoprefixer](https://github.com/postcss/autoprefixer) on the output CSS to get all of your needed vendor prefixes.
 
 ## Why
 Less is an awesome CSS preprocessor. It has variables, functions (mixins), and importing — all things needed to be able to write modular, reusable stylesheets. But the behavior of the MDG Less package to process every `.less` file independently makes it very tough to implement modular styles across your application. Given an application like such:
